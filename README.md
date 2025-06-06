@@ -150,22 +150,6 @@ O simulador monitora:
 - **Severo**: 50-70% dos processos em swapping
 - **Crítico**: > 70% dos processos em swapping
 
-## 💡 Dicas para Apresentação
-
-1. **Comece devagar**: Mostre o sistema funcionando normalmente
-2. **Demonstre o problema**: Adicione processos gradualmente
-3. **Destaque os alertas**: Explique cada nível de thrashing
-4. **Use analogias**: Compare com situações do dia a dia
-5. **Mostre o impacto**: Enfatize o contador de swapping crescente
-
-## 🎓 Conceitos para Estudo
-
-- **Gerenciamento de Memória**: Como o SO aloca e libera memória
-- **Memória Virtual**: Técnica que permite usar disco como extensão da RAM
-- **Page Faults**: Quando um processo precisa de dados que estão no disco
-- **Working Set**: Conjunto de páginas que um processo precisa para executar
-- **Algoritmos de Substituição**: FIFO, LRU, Clock, etc.
-
 ## ⚠️ Limitações do Simulador
 
 Este é um modelo simplificado para fins educacionais:
