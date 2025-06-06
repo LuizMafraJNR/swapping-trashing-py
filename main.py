@@ -32,12 +32,10 @@ class SimuladorThrashing:
         novo_processo = Processo(self.proximo_pid, tamanho)
         self.proximo_pid += 1
 
-        # Verifica se há espaço na memória
         if self.calcular_memoria_usada() + tamanho <= self.tamanho_memoria:
             self.processos_memoria.append(novo_processo)
             print(f"\n✓ Processo {novo_processo} adicionado à memória (tamanho: {tamanho}MB)")
         else:
-            # Adiciona à fila de swapping
             self.fila_swapping.append(novo_processo)
             print(f"\n⚠ Memória cheia! Processo {novo_processo} adicionado à fila de swapping")
 
@@ -45,11 +43,9 @@ class SimuladorThrashing:
         if not self.fila_swapping or not self.processos_memoria:
             return
 
-        # Simula swap-out (remove processo da memória)
         processo_removido = self.processos_memoria.pop(0)
         self.fila_swapping.append(processo_removido)
 
-        # Simula swap-in (adiciona processo da fila)
         if self.fila_swapping:
             processo_adicionado = self.fila_swapping.popleft()
             self.processos_memoria.append(processo_adicionado)
@@ -61,18 +57,14 @@ class SimuladorThrashing:
         print("ESTADO DO SISTEMA")
         print("="*60)
 
-        # Memória principal
         print(f"Memória Principal ({self.calcular_memoria_usada()}/{self.tamanho_memoria}MB):")
         print(f"Processos: {[str(p) for p in self.processos_memoria]}")
 
-        # Fila de swapping
         print(f"\nFila de Swapping ({len(self.fila_swapping)} processos):")
         print(f"Processos: {[str(p) for p in list(self.fila_swapping)[:5]]}{'...' if len(self.fila_swapping) > 5 else ''}")
 
-        # Estatísticas
         print(f"\nOperações de Swapping: {self.contador_swapping}")
 
-        # Nível de thrashing
         if len(self.fila_swapping) > 0:
             nivel_thrashing = len(self.fila_swapping) / (len(self.processos_memoria) + len(self.fila_swapping))
             if nivel_thrashing > 0.7:
@@ -84,14 +76,11 @@ class SimuladorThrashing:
 
     def executar_simulacao(self):
         while self.executando:
-            # Realiza swapping se necessário
             if self.fila_swapping:
                 self.realizar_swapping()
 
-            # Exibe estado
             self.exibir_estado()
 
-            # Aguarda um pouco
             time.sleep(2)
 
     def parar_simulacao(self):
@@ -110,11 +99,9 @@ def menu_principal():
 
     simulador = SimuladorThrashing(tamanho_memoria=100)
 
-    # Adiciona alguns processos iniciais
     for i in range(3):
         simulador.adicionar_processo(random.randint(20, 30))
 
-    # Inicia thread de simulação
     thread_simulacao = threading.Thread(target=simulador.executar_simulacao)
     thread_simulacao.daemon = True
     thread_simulacao.start()
