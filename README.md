@@ -79,9 +79,15 @@ Operações de Swapping: 15
 2. Adicione 1 processo grande (comando `3`)
 3. Observe o início do swapping
 
-### Teste 3: Thrashing Severo
+### Teste 3: Thrashing Moderado
 1. Use o comando `4` para adicionar múltiplos processos
 2. Digite `5` quando perguntado a quantidade
+3. Observe o alerta de thrashing moderado
+4. Note como o contador de swapping aumenta rapidamente
+
+### Teste 4: Thrashing Severo
+1. Use o comando `4` para adicionar múltiplos processos
+2. Digite `10` quando perguntado a quantidade
 3. Observe o alerta de thrashing crítico
 4. Note como o contador de swapping aumenta rapidamente
 
